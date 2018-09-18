@@ -612,11 +612,18 @@ To style it:
           return cls;
         },
 
-        _valueChanged: function() {
+        _valueChanged: function(event) {
           // Only update if it's actually different.
-          if (this.$.input && this.$.input.textContent !== this.value) {
-            this.$.input.textContent = this.value;
+          if (!this.selectedItemLabel) {
+            if (this.$.input && this.$.input.textContent !== this.value) {
+              this.$.input.textContent = this.value;
+            }
+          } else {
+            if (this.$.input && this.$.input.textContent !== this.selectedItemLabel) {
+              this.$.input.textContent = this.selectedItemLabel;
+            }
           }
+
           this._setHasContent(!!this.value);
         },
       });
